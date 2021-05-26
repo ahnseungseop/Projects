@@ -45,6 +45,4 @@
 
 ### 연구결과
 
-![image-3.png](attachment:image-3.png)
-
 - result > 포털 사이트 내 언론사의 구독자 정치성향 분석을 통한 정치적 중립성 제고 방안 논문 참고
