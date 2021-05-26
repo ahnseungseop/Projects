@@ -29,19 +29,17 @@
 
 ### 활용 시나리오
 
-![image.png](attachment:image.png)
 
 
 
-![image-2.png](attachment:image-2.png)
 
+
+- Issue의 Image in Item2Vec_Read_me.md 참고
 - UP과 비슷한 임베딩 벡터를 가진 영화 목록 : 토이스토리3, 라따뚜이 등
 - UP을 시청한 소비자에게 비슷한 임베딩 벡터를 가진 영화들을 추천 가능
 - 실제로 장르가 비슷한 영화들이 추천됨
 
-![image.png](attachment:image.png)
 
-![image-2.png](attachment:image-2.png)
 
 
 - Matrix와 Django의 임베딩 벡터를 연산하면, 배트맨 다크나이트의 임베딩 벡터가 나옴
