@@ -10,7 +10,7 @@ rm(analysis.type)
 library(xlsx)
 setwd(f_dir)
 getwd()
-final_data <- read.csv("키healthcare_patents.csv",encoding='cp949') # INPUT : beta dataset
+final_data <- read.csv("healthcare_patents.csv",encoding='cp949') # INPUT : beta dataset
 library(NLP)
 library(tm)
 letm_all <- read.xlsx("tokenized_result.xlsx",sheetIndex=1,encoding='UTF-8') # INPUT : lemma data

@@ -20,28 +20,28 @@ data.head()
 # delete and/or , e.g : 특허에 많이 들어있는 표현 불용어 사전에 있지 않아, 따로 삭제 진행
 
 for i in range(0,len(data)):
-    data['요약'][i]=data['요약'][i].replace('and/or','')
+    data['abstract'][i]=data['abstract'][i].replace('and/or','')
     
 for j in range(0,len(data)):
-    data['요약'][j]=data['요약'][j].replace('e.g.','')
+    data['abstract'][j]=data['abstract'][j].replace('e.g.','')
     
 
-content = data[['요약']]
+content = data[['abstract']]
 
 print(len(content))
 
 print(content.head())
 
-content['요약'][0]
+content['abstract'][0]
 
 #%%
 
 # 문자만 추출
 
 for i in range(0, len(content)):
-    content['요약'][i]=re.sub('[^a-zA-Z]',' ', content['요약'][i])
+    content['abstract'][i]=re.sub('[^a-zA-Z]',' ', content['abstract'][i])
 
-print(content['요약'][0])
+print(content['abstract'][0])
 
 #%%
 
@@ -50,33 +50,33 @@ print(content['요약'][0])
 no_num=re.compile('[^0-9]')
 
 for i in range(0, len(content)):
-    content['요약'][i]="".join(no_num.findall(content['요약'][i]))
+    content['abstract'][i]="".join(no_num.findall(content['abstract'][i]))
     
-print(content['요약'][0])
+print(content['abstract'][0])
 
 #%%
 
 # 특수문자 제거
 
 for i in range(0, len(content)):
-    content['요약'][i]=re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]','',content['요약'][i])
+    content['abstract'][i]=re.sub('[-=+,#/\?:^$.@*\"※~&%ㆍ!』\\‘|\(\)\[\]\<\>`\'…》]','',content['abstract'][i])
     
-print(content['요약'][0])
+print(content['abstract'][0])
 
 #%%
 
 # 소문자화
 
 for i in range(0, len(content)):
-    content['요약'][i]=content['요약'][i].lower()
+    content['abstract'][i]=content['abstract'][i].lower()
     
-print(content['요약'][0])
+print(content['abstract'][0])
 
 #%%
 
 # 토큰화
 
-content['요약'] = content.apply(lambda row : nltk.word_tokenize(str(row['요약'])),axis=1)
+content['abstract'] = content.apply(lambda row : nltk.word_tokenize(str(row['abstract'])),axis=1)
 
 print(content.head(5)) # 상위 5개만 뽑아 단어 토큰화 결과 확인 
 
@@ -85,7 +85,7 @@ print(content.head(5)) # 상위 5개만 뽑아 단어 토큰화 결과 확인
 # delete nltk stopwords
 
 stop = stopwords.words('english')
-content['요약'] = content['요약'].apply(lambda x: [word for word in x if word not in (stop)])
+content['abstract'] = content['abstract'].apply(lambda x: [word for word in x if word not in (stop)])
 print(content.head(5)) # a, and, for와 같은 불용어 사라짐
 
 
@@ -94,10 +94,10 @@ print(content.head(5)) # a, and, for와 같은 불용어 사라짐
 # lemmatizer
 
 # 표제어 추출, 3인칭 단수표현을 1인칭으로 과거 동사를 현재형으로 변환 등과 같은 작업 수행
-content['요약'] = content['요약'].apply(lambda x: [WordNetLemmatizer().lemmatize(word, pos='v') for word in x])
+content['abstract'] = content['abstract'].apply(lambda x: [WordNetLemmatizer().lemmatize(word, pos='v') for word in x])
 print(content.head(5))
 
-print(content['요약'][0])
+print(content['abstract'][0])
 
 
 #%%
@@ -106,7 +106,7 @@ print(content['요약'][0])
 
 # 길이가 3개 이하인 단어는 제거
 
-tokenized_doc =content['요약'].apply(lambda x: [word for word in x if len(word) > 3])
+tokenized_doc =content['abstract'].apply(lambda x: [word for word in x if len(word) > 3])
 print(tokenized_doc[:5])
 
 print(tokenized_doc[0])
